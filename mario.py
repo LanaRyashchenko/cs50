@@ -2,9 +2,11 @@ import cs50
 import sys
 
 def check():
-    height = int(input("Height: "))
+    print("Please, enter the height of pyramide")
+    height = cs50.get_int()
     while height < 0 or height > 23:
-        height = int(input("Retry "))
+        print("Retry: ")
+        height = cs50.get_int()
     if height == 0:
         print("0")
     else: 
