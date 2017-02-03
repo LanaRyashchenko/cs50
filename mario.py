@@ -8,7 +8,7 @@ def check():
         print("Retry: ")
         height = cs50.get_int()
     if height == 0:
-        print("0")
+        return 0
     else: 
         for n in range(1,height+1):
             print(' ' * (height - n), end = '')
