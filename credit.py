@@ -6,18 +6,15 @@ number = cs50.get_int()
 number = str(number)
 number_rev = (number)[::-1]
 
-y = 0
-d = 0
-for i in range(1,len(number),2):
-    m = int(number_rev[i]) * 2
-    for b in str(m):
-        d += int(b)
-
-for x in range(0,len(number),2):
-    c = int(number_rev[x])
-    y = c + y
-
-checksum = d + y
+checksum = 0
+for (i, sym) in enumerate(number_rev):
+    if i % 2:
+        sym = int(sym) * 2
+        while sym:
+            checksum += sym % 10
+            sym //= 10
+    else:
+        checksum += int(sym)
 
 checkvalid = checksum % 10
 
