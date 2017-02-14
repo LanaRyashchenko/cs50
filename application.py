@@ -18,9 +18,13 @@ def search():
         return redirect(url_for("index"))
         
     # get screen_name's tweets
-    tweets = helpers.get_user_timeline(screen_name)
+    tweets = helpers.get_user_timeline(screen_name, count = 100)
 
     Analyzer(positives = "positive-words.txt", negatives = "negative-words.txt")
+    
+    positive = 0    
+    negative = 0
+    neutral = 0
 
     for tweet in tweets:
         words = tweet.lower().split(" ")
@@ -32,25 +36,18 @@ def search():
                 score -= 1
             else: 
                 score = score
+                if score > 0.0:
+                    positive += 1
+                elif score < 0.0:
+                    negative += 1
+                else:
+                    neutral +=1
 
-    positive = 0    
-    negative = 0
-    neutral = 0
-    
-    if score > 0.0:
-        positive += 1
-    elif score < 0.0:
-        negative += 1
-    else:
-        neutral +=1
-        
     total = (positive + negative + neutral)
     posititve = (positive/total) * 100
     negative = (negative/total) * 100
     neutral = (neutral/total) * 100
-    print(positive)
-    print(negative)
-    print(neutral)
+
     # generate chart
     chart = helpers.chart(positive, negative, neutral)
 
