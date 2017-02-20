@@ -16,6 +16,10 @@ def register():
         if request.form.get("password") != request.form.get("password_confirm"):
             return apology("password mismatch")
         
+        rows = db.execute("SELECT * FROM users WHERE username = :username", username=request.form.get("username"))
+        if len(rows) != 0:
+            return apology("Sorry, this user already exists")
+     
         hash = pwd_context.encrypt(request.form.get("password"))
         
         result = db.execute("INSERT INTO users (username, hash) VALUES (:username, :hash)", username = request.form.get("username"), hash = hash)
@@ -23,7 +27,8 @@ def register():
         if not result:
             return apology("Sorry, this user already exists")
         else:
-            session["user_id"] = result[0]["id"]
+            session["user_id"] = rows[0]["id"]
             return redirect(url_for("index"))
     else:
         return render_template("register.html")
+
