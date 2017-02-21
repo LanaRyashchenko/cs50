@@ -1,0 +1,20 @@
+@app.route("/buy", methods=["GET", "POST"])
+@login_required
+def buy():
+    """Buy shares of stock."""
+    if request.method == "POST":
+        if not request.form.get("symbol") or not request.form.get("number_shares"):
+            return apology("must provide symbol and number of shares you want")
+        
+        elif int(request.form.get("number_shares")) <= 0:
+            return apology("number of shares should be a positive integer")
+            
+        else: 
+            symbol = lookup(request.form.get("symbol"))
+            if symbol == None:
+                return apology("this symbol doesn't exist")
+            else:
+                cash_allowed = db.execute("SELECT cash FROM users WHERE user_id = :user_id", user_id = session["user_id"])
+                purchase =  db.execute("INSERT INTO transactions (user_id, symbol, stocks, number_of_shares, price) VALUES (:user_id, :symbol, :stocks, :number_of_shares, :price)", user_id = session["user_id"], symbol = symbol['symbol'], stocks = symbol['name'], number_of_shares = request.form.get("number_shares"), price = symbol['price']) 
+                return render_template("index.html")
+    return render_template("buy.html")
