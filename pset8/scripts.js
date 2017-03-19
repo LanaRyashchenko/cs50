@@ -186,6 +186,20 @@ function search(query, syncResults, asyncResults)
 function showInfo(marker)
 {
     // start div
+      var div = "<div id='info'>";
+    if (typeof(content) == "undefined")
+    {
+        // http://www.ajaxload.info/
+        div += "<img alt='loading' src='/static/ajax-loader.gif'/>";
+    }
+    else
+    {
+        div += content;
+    }
+
+    // end div
+    div += "</div>";
+
      $.getJSON(Flask.url_for("articles"))
     .done(function(data, textStatus, jqXHR) {
        // if there is no news, tell user no news
@@ -199,40 +213,20 @@ function showInfo(marker)
 		// start unordered list
 		var ul = "<ul>";	
 
-		// create template
-		var template = _.template("<li><a href = '<%- link %>' target = '_blank'><%- title %></a></li>");
-		
 		// use template to insert content
 		for (var i = 0, n = data.length; i < n; i++)
 		{
-		    ul += template({
-			link: data[i].link,
-			title: data[i].title
-		    }); 
+		   ul += "<li><a href = '" +  data[i].link + "' target = '_blank'>" +  data[i].title + "</a></li>";
 		}
 
 		// end unordered list
 		ul += "</ul>";	
-		
+		console.log(ul);
 		// show news
-		showInfo(marker);
+        //  div = "<div id='info'>" + ul  + "</div>”;
 	}
 	});
 
-
-    var div = "<div id='info'>";
-    if (typeof(content) == "undefined")
-    {
-        // http://www.ajaxload.info/
-        div += "<img alt='loading' src='/static/ajax-loader.gif'/>";
-    }
-    else
-    {
-        div += content;
-    }
-
-    // end div
-    div += "</div>";
 
     // set info window's content
     info.setContent(div);
