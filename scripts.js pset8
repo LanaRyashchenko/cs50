@@ -1,0 +1,51 @@
+function addMarker(place)
+{
+  // create marker object
+  	var location = {lat: parseFloat(place.latitude), lng: parseFloat(place.longitude)};
+  	var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+    var marker = new google.maps.Marker({
+	icon: image,	
+	position: location,
+	map: map,
+	title: place.place_name
+    });
+    marker.addListener('click', function() {
+    showInfo(marker);
+    map.setZoom(13);
+    map.setCenter(marker.getPosition());
+    
+   $.getJSON(Flask.url_for("articles"))
+    .done(function(data, textStatus, jqXHR) {
+       // if there is no news, tell user no news
+	    if (data.length === 0)
+	    {
+		showInfo(marker, "No News.");
+	    }
+	    // else if there is news, displays news in unordered list
+	    else
+	    {
+		// start unordered list
+		var ul = "<ul>";	
+
+		// create template
+		var template = _.template("<li><a href = '<%- link %>' target = '_blank'><%- title %></a></li>");
+		
+		// use template to insert content
+		for (var i = 0, n = data.length; i < n; i++)
+		{
+		    ul += template({
+			link: data[i].link,
+			title: data[i].title
+		    }); 
+		}
+
+		// end unordered list
+		ul += "</ul>";	
+		
+		// show news
+		showInfo(marker, ul);
+	}
+	});
+	});
+  markers.push(marker);
+}
