@@ -63,21 +63,47 @@ $(function() {
  */
 function addMarker(place)
 {
-  // create marker object
+    // TODO
+ // create marker object
   	var location = {lat: parseFloat(place.latitude), lng: parseFloat(place.longitude)};
   	var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
-    var marker = new google.maps.Marker({
+    var marker = new google.maps.Marker
+    ({
 	icon: image,	
 	position: location,
 	map: map,
 	title: place.place_name
     });
-marker.addListener('click', function() {
-      showInfo(marker);
-      map.setZoom(13);
-      map.setCenter(marker.getPosition());
-});
-  markers.push(marker);
+    
+    markers.push(marker);
+    
+    var parameter = "geo="+ place["postal_code"];
+
+    // Create an info window
+    marker.info = new google.maps.InfoWindow({
+        // Set up the ajax loader gif
+        content: "<div id='articles'><img id='loader' src='/static/ajax-loader.gif'/></div>"
+    });
+    
+    // Add a click listener that will load the articles using ajax.
+    google.maps.event.addListener(marker, "click", function (e){ 
+        
+        marker.info.open(map, this);
+        // Technique adapted from Baer at this link: http://stackoverflow.com/questions/9760328/clearest-way-to-build-html-elements-in-jquery
+        var html = ["<ul>"];
+        // Modify the html and load-in the articles
+        $.getJSON(Flask.url_for("articles"), parameter).done(function(data){
+            $.each(data, function(i, item){
+                html.push("<li><a href='"+item.link+"' target='_blank'>"+item.title+"</a></li>");
+            });
+            html.push("</ul>");
+            marker.info.setContent(html.join("\n"));
+        }).fail(function(jqXHR, textStatus, errorThrown){
+            console.log(errorThrown.toString());
+        });
+    });
+
+    
 }
 
 /**
@@ -112,7 +138,9 @@ function configure()
         source: search,
         templates: {
             suggestion: Handlebars.compile(
-                "<div>" + "{{place_name}}, {{admin_name1}}, {{postal_code}}" + "</div>"
+                "<div>" +
+                "{{place_name}}, {{admin_name1}}, {{postal_code}}" +
+                "</div>"
             )
         }
     });
@@ -153,6 +181,14 @@ function configure()
 function removeMarkers()
 {
     // TODO
+    // remove marker from markers
+    for (var i = 0, n = markers.length; i < n; i++)
+    {
+	markers[i].setMap(null);
+    }
+
+    // reset length to 0
+    markers.length = 0;
 }
 
 /**
@@ -183,10 +219,10 @@ function search(query, syncResults, asyncResults)
 /**
  * Shows info window at marker with content.
  */
-function showInfo(marker)
+function showInfo(marker, content)
 {
     // start div
-      var div = "<div id='info'>";
+    var div = "<div id='info'>";
     if (typeof(content) == "undefined")
     {
         // http://www.ajaxload.info/
@@ -199,34 +235,6 @@ function showInfo(marker)
 
     // end div
     div += "</div>";
-
-     $.getJSON(Flask.url_for("articles"))
-    .done(function(data, textStatus, jqXHR) {
-       // if there is no news, tell user no news
-	    if (data.length === 0)
-	    {
-		showInfo(marker, "No News.");
-	    }
-	    // else if there is news, displays news in unordered list
-	    else
-	    {
-		// start unordered list
-		var ul = "<ul>";	
-
-		// use template to insert content
-		for (var i = 0, n = data.length; i < n; i++)
-		{
-		   ul += "<li><a href = '" +  data[i].link + "' target = '_blank'>" +  data[i].title + "</a></li>";
-		}
-
-		// end unordered list
-		ul += "</ul>";	
-		console.log(ul);
-		// show news
-        //  div = "<div id='info'>" + ul  + "</div>”;
-	}
-	});
-
 
     // set info window's content
     info.setContent(div);
