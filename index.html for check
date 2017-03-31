@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta -->
+        <meta charset="utf-8"/>
+        <meta content="initial-scale=1, width=device-width" name="viewport"/>
+
+        <!-- documentation at http://getbootstrap.com/, alternative themes at https://www.bootstrapcdn.com/bootswatch/ -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+
+        <link href="/static/styles.css" rel="stylesheet"/>
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <title>GARAGE SALE 
+    Index
+</title>
+
+    </head>
+
+    <body>
+
+        <div class="container">
+
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button aria-expanded="false" class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/"><span class="blue">GARAGE SALE</span></a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbar">
+                        
+                       
+                            <ul class="nav navbar-nav navbar-right">
+
+                                <li><a href="/logout">Log Out</a></li>
+                            </ul> 
+                            <ul class="nav navbar-nav navbar-left">
+                                <li><a href="/lot">Add lot</a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-left">
+                                <li><a href="/my_garage">My garage</a></li>
+                            </ul>
+                             <ul class="nav navbar-nav navbar-left">
+                                <li><a href="/search">Search</a></li>
+                            </ul>
+                            
+                        
+                    </div>
+                </div>
+            </nav>
+
+            
+
+            <main>
+                
+ <form action="/" method="post">
+<h1>  </h1>
+
+
+  <head>
+  <style>
+   table {
+    width: 100%; /* Ширина таблицы */
+    background: white; /* Цвет фона таблицы */
+    color: black; /* Цвет текста */
+    border: 1px solid black; /* Расстояние между ячейками */
+    text-align: right;
+    vertical-align: central;
+   }
+
+   td, th {
+    background: white; /* Цвет фона ячеек */
+    padding: 5px; 
+    border: 1px solid black;
+    text-align: left;
+   }
+  </style>
+ </head> 
+ <body>
+  <table>
+   <tr>
+     <th>
+       <img src="http://imgdepo.com/id/10476517.jpg" width="200px" heigh="300px">
+      </th>
+      <td>
+     <font size="4" color="blue"><b>Kitten </b></font> by <font size="4" color="black"><b> Lana </b> (None)</font>
+          <br/>
+            Little kitten for your flat
+          <br/>
+          <font size="2" color="black"><b>Sale start:</b></font> 2017-03-31
+          <br/>
+          <font size="2" color="black"><b>Sale ends:</b></font> 2017-04-07
+          <br/>
+          <font size="2" color="black"><b>Maximum price, USD: </b></font>2
+          <br/>
+          <font size="2" color="black"><b>Minimum price, USD:</b></font> 0.5
+          <br/>
+          <font size="2" color="black"><b>Days of sale:</b></font> 7
+          <br/>
+          <font size="2" color="black"><b>Price now, USD: </b></font> 2.0
+          <br/>
+      </td>
+  </tr>
+  </table>
+ </body>
+          
+  <head>
+  <style>
+   table {
+    width: 100%; /* Ширина таблицы */
+    background: white; /* Цвет фона таблицы */
+    color: black; /* Цвет текста */
+    border: 1px solid black; /* Расстояние между ячейками */
+    text-align: right;
+    vertical-align: central;
+   }
+
+   td, th {
+    background: white; /* Цвет фона ячеек */
+    padding: 5px; 
+    border: 1px solid black;
+    text-align: left;
+   }
+  </style>
+ </head> 
+ <body>
+  <table>
+   <tr>
+     <th>
+       <img src="http://imgdepo.com/id/10476583.jpg" width="200px" heigh="300px">
+      </th>
+      <td>
+     <font size="4" color="blue"><b>Bart Simpson </b></font> by <font size="4" color="black"><b> Lana </b> (None)</font>
+          <br/>
+            A boy
+          <br/>
+          <font size="2" color="black"><b>Sale start:</b></font> 2017-03-31
+          <br/>
+          <font size="2" color="black"><b>Sale ends:</b></font> 2017-04-08
+          <br/>
+          <font size="2" color="black"><b>Maximum price, USD: </b></font>30
+          <br/>
+          <font size="2" color="black"><b>Minimum price, USD:</b></font> 25
+          <br/>
+          <font size="2" color="black"><b>Days of sale:</b></font> 8
+          <br/>
+          <font size="2" color="black"><b>Price now, USD: </b></font> 30.0
+          <br/>
+      </td>
+  </tr>
+  </table>
+ </body>
+          
+  <head>
+  <style>
+   table {
+    width: 100%; /* Ширина таблицы */
+    background: white; /* Цвет фона таблицы */
+    color: black; /* Цвет текста */
+    border: 1px solid black; /* Расстояние между ячейками */
+    text-align: right;
+    vertical-align: central;
+   }
+
+   td, th {
+    background: white; /* Цвет фона ячеек */
+    padding: 5px; 
+    border: 1px solid black;
+    text-align: left;
+   }
+  </style>
+ </head> 
+ <body>
+  <table>
+   <tr>
+     <th>
+       <img src="http://imgdepo.com/id/10476610.jpg" width="200px" heigh="300px">
+      </th>
+      <td>
+     <font size="4" color="blue"><b>Coat </b></font> by <font size="4" color="black"><b> Ululu </b> (None)</font>
+          <br/>
+            Beautiful warm coat
+          <br/>
+          <font size="2" color="black"><b>Sale start:</b></font> 2017-03-31
+          <br/>
+          <font size="2" color="black"><b>Sale ends:</b></font> 2017-04-28
+          <br/>
+          <font size="2" color="black"><b>Maximum price, USD: </b></font>150
+          <br/>
+          <font size="2" color="black"><b>Minimum price, USD:</b></font> 100
+          <br/>
+          <font size="2" color="black"><b>Days of sale:</b></font> 28
+          <br/>
+          <font size="2" color="black"><b>Price now, USD: </b></font> 150.0
+          <br/>
+      </td>
+  </tr>
+  </table>
+ </body>
+          
+  <head>
+  <style>
+   table {
+    width: 100%; /* Ширина таблицы */
+    background: white; /* Цвет фона таблицы */
+    color: black; /* Цвет текста */
+    border: 1px solid black; /* Расстояние между ячейками */
+    text-align: right;
+    vertical-align: central;
+   }
+
+   td, th {
+    background: white; /* Цвет фона ячеек */
+    padding: 5px; 
+    border: 1px solid black;
+    text-align: left;
+   }
+  </style>
+ </head> 
+ <body>
+  <table>
+   <tr>
+     <th>
+       <img src="http://imgdepo.com/id/10478121.jpeg" width="200px" heigh="300px">
+      </th>
+      <td>
+     <font size="4" color="blue"><b>Skirt (H&amp;M) </b></font> by <font size="4" color="black"><b> Joy </b> (so@sobaka.com)</font>
+          <br/>
+            Black silk skirt. Size: 36
+          <br/>
+          <font size="2" color="black"><b>Sale start:</b></font> 2017-03-31
+          <br/>
+          <font size="2" color="black"><b>Sale ends:</b></font> 2017-04-30
+          <br/>
+          <font size="2" color="black"><b>Maximum price, USD: </b></font>30
+          <br/>
+          <font size="2" color="black"><b>Minimum price, USD:</b></font> 20
+          <br/>
+          <font size="2" color="black"><b>Days of sale:</b></font> 30
+          <br/>
+          <font size="2" color="black"><b>Price now, USD: </b></font> 30.0
+          <br/>
+      </td>
+  </tr>
+  </table>
+ </body>
+          
+</form>
+
+            </main>
+            
+        </div>
+
+    </body>
+
+</html>
