@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Add lot
+{% endblock %}
+
+{% block main %}
+    <form action="{{ url_for('add_lot') }}" method="post" enctype="multipart/form-data">
+        <fieldset>
+            
+            <div class="form-group"> 
+                <div class="nav navbar-nav navbar-left">
+                1. Item for sale: <input class="form-control" input type="text" name="item"/>
+                </div>
+            </div>
+            <br/>
+                
+            <div class="form-group">
+                <div class="nav navbar-nav navbar-left">
+                2. Description of your item:  <input class="form-control" input type="text" name="description"/>
+                </div>
+            </div>
+            <br/>
+            
+            <div class="form-group">
+                <div class="nav navbar-nav navbar-left">
+                3. Picture of your item: <input class="form-control" name="file" input type='file' input type=submit/>
+                </div>
+            </div>
+           <br/>
+           
+           <div class="form-group">
+                <div class="nav navbar-nav navbar-left">
+                4. Sale starts at:  <input class="form-control" input type="date" name="date_start"/>
+                </div>
+            </div>
+           <br/>
+           
+            <div class="form-group">
+                <div class="nav navbar-nav navbar-left">
+                5. Sale ends at:  <input class="form-control" input type="date" class="date" name="date_end"/>
+                </div>
+            </div>
+           <br/>
+           
+           <div class="form-group">
+                <div class="nav navbar-nav navbar-left">
+                6. Maximum price  <input class="form-control" input type="text" name="max_price"/>
+                </div>
+            </div>
+           <br/>
+           
+           <div class="form-group">
+                <div class="nav navbar-nav navbar-left">
+                7. Minimum price:  <input class="form-control" input type="text" name="min_price"/>
+                </div>
+            </div>
+           <br/>
+           
+           
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">Add item</button>
+            </div>
+        </fieldset>
+    </form>
+    
+{% endblock %}
